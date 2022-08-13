@@ -13,3 +13,13 @@ export function add(numbers){
 export function generateToken(email, doneFn) {
     jwt.sign({email}, 'secret123', doneFn);
 }
+
+export function generateTokneAsync(email) {
+    const promise = new Promise((resolve, reject) => {
+        jwt.sign({email}, 'secret123', (err, token) => {
+            err ? reject(err) : resolve(token);
+        })
+    })
+
+    return promise;
+}

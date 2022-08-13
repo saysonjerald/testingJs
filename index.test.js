@@ -1,5 +1,5 @@
 import {it, expect, describe} from 'vitest';
-import {add, generateToken} from './utils';
+import {add, generateToken, generateTokneAsync} from './utils';
 
 
 //#region  describe(), it(), expect(), tobe..();
@@ -59,7 +59,7 @@ describe('Testing Asynchronous Code With Callbacks', () => {
         generateToken(email, (err, token) => {
             console.log(token);
             try {
-                expect(token).not.toBeDefined();
+                expect(token).toBeDefined();
                 done();
             } catch (error) {
                 done(error);
@@ -67,3 +67,27 @@ describe('Testing Asynchronous Code With Callbacks', () => {
         })
     })
 })
+//#endregion
+
+//#region Testing Asynchronous Code With Promises & async  await
+describe('Testing Asynchronous Code With Promises', () => {
+    it('Generate a token', () => {
+        const email = "example@gmail.com";
+        expect(generateTokneAsync(email)).resolves.toBeDefined();
+    });
+})
+
+// OR, other approach using Async await
+
+describe('Testing Asynchronous Code With Promises AsyncAwait', () => {
+    it('Generate a token', async () => {
+        const email = "example@gmail.com";
+
+        const token = await generateTokneAsync(email);
+        expect(token).toBeDefined();
+    });
+})
+
+
+//#endregion
+
