@@ -1,5 +1,5 @@
 import {it, expect, describe} from 'vitest';
-import {add} from './add';
+import {add, generateToken} from './utils';
 
 
 //#region  describe(), it(), expect(), tobe..();
@@ -33,6 +33,7 @@ it("Checking if it is a number", () => {
 })
 //#endregion
 
+//#region  Handling reference and premitive values
 describe('Reference and Premitive values', () => {
     it('Testing a reference value', () => {
         //reference: Arrays, Object & Function
@@ -47,4 +48,22 @@ describe('Reference and Premitive values', () => {
         //Instead of using to .toBe(), We're going to use .toEqual() for reference values;
         expect(value).toEqual([1, 2, 3, 99]);
     });
+})
+//#endregion
+
+//#region Testing Asynchron qous Code With Callbacks
+describe('Testing Asynchronous Code With Callbacks', () => {
+    // done() is deprecated and it's not recommended to use this kind of action or practice. We're going to use Promise instead.
+    it('Generate a token', (done) => {
+        const email = "example@gmail.com";
+        generateToken(email, (err, token) => {
+            console.log(token);
+            try {
+                expect(token).not.toBeDefined();
+                done();
+            } catch (error) {
+                done(error);
+            }
+        })
+    })
 })

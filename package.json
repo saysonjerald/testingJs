@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "vitest": "^0.21.1"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
   }
 }

@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+
 export function add(numbers){
     let sum = 0;
     
@@ -7,3 +9,7 @@ export function add(numbers){
 
     return sum;
 } 
+
+export function generateToken(email, doneFn) {
+    jwt.sign({email}, 'secret123', doneFn);
+}
